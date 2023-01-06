@@ -30,19 +30,10 @@ extern "C"
 #define MM_PER_INCH     25.4    /* exactly */
 
 
-#ifndef __cplusplus
-/*! A C++ Boolean type and corresponding keywords for our C code.
- */
-typedef enum {
-  false = 0,
-  true
-} bool;
-#endif
-
-
 /*  Run-time contract validation.
  */
 #include <stdlib.h>
+#include <stdbool.h>
 #include "message.h"
 
 #define _assert(type,condition)                                 \

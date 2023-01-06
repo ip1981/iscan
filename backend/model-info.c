@@ -677,12 +677,12 @@ model_info_has_lock_commands (const void *self)
   return (self_->command->lock && self_->command->unlock);
 }
 
-scan_area_t 
+scan_area_t
 model_info_max_scan_area(const void *self, const char *option, const char *mode)
 {
   _model_info_t *self_ = NULL;
   scan_area_t scan_area;
-  
+
   require (self);
   require (option);
 

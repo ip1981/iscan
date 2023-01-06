@@ -70,6 +70,7 @@
 #endif
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #include <sane/sane.h>
 

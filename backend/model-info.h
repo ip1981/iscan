@@ -100,6 +100,7 @@
  *  SANE_Device structure marginally less verbose.
  */
 
+#include <stdbool.h>
 #include <sane/sane.h>
 
 #include "defines.h"
