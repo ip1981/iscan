@@ -28,30 +28,10 @@ AC_PREREQ(2.60)
 AC_INIT([Image Scan! for Linux],
 	[2.30.4], [linux-printer@epson.jp], [iscan])
 
-SCM_INIT([-Wall -Werror])
-
-SCM_RELEASE([2])
-
-SCM_VENDOR([SEIKO EPSON Corporation])
-SCM_AUTHOR([SEIKO EPSON Corporation])
-SCM_WEBSITE([http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX])
-SCM_INFO(["simple, easy to use scanner utility for EPSON scanners"],["\
-Image Scan! is a graphical scanner utility for people that do not need\\
-all the bells and whistles provided by several of the other utilities\\
-out there (xsane, QuiteInsane, Kooka).\\
-.\\
-At the moment it only supports SEIKO EPSON scanners and all-in-ones.\\
-However, the scanner driver it provides can be used by any other SANE\\
-standard compliant scanner utility.\
-"],["\
-Note that several scanners require a non-free plugin before they can\\
-be used with this software.\
-"])
-
 AC_SUBST(DATA_PKG_NAME, "iscan-data")
 AC_SUBST(MODEL_DATA_DIR_NAME, "device")
 
-AC_CONFIG_SRCDIR([iscan.spec])
+AC_CONFIG_SRCDIR([backend/backend.h])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -104,7 +84,7 @@ PKG_CHECK_MODULES(GTK, gtk+-2.0,
     AC_DEFINE([HAVE_GTK_2], 1,
 	      [Define to 1 if you have the gtk+-2.0 library.])
    ],[
-    PKG_CHECK_MODULES(GTK, gtk+) 
+    PKG_CHECK_MODULES(GTK, gtk+)
     PKG_CHECK_MODULES(GDK_IMLIB, imlibgdk)
    ])
 
