@@ -153,7 +153,7 @@ _delete_text (GtkEditable *ed, gint start, gint end, file_selector *fs)
   g_print ("%s\n", __func__);
 
 #ifndef HAVE_GTK_2
-  gtk_signal_handler_block_by_func (GTK_OBJECT (ed), 
+  gtk_signal_handler_block_by_func (GTK_OBJECT (ed),
 				    GTK_SIGNAL_FUNC (_delete_text), fs);
   fs->delete_text (start, end);
   gtk_signal_handler_unblock_by_func (GTK_OBJECT (ed),
@@ -164,7 +164,7 @@ _delete_text (GtkEditable *ed, gint start, gint end, file_selector *fs)
   g_signal_handlers_unblock_by_func (ed, (gpointer) _delete_text, fs);
 #endif
 
-  g_signal_stop_emission_by_name (GTK1_OBJ(ed), "delete-text"); 
+  g_signal_stop_emission_by_name (GTK1_OBJ(ed), "delete-text");
 }
 
 static void
@@ -185,7 +185,7 @@ _insert_text (GtkEditable *ed, gchar *text, gint len, gint *pos,
   g_signal_handlers_unblock_by_func (ed, (gpointer) _insert_text, fs);
 #endif
 
-  g_signal_stop_emission_by_name (GTK1_OBJ(ed), "insert-text"); 
+  g_signal_stop_emission_by_name (GTK1_OBJ(ed), "insert-text");
 }
 
 static void
@@ -319,7 +319,7 @@ file_selector::create_window (GtkWindow *window, GtkWidget *parent,
 				// needs to be called before we canonize
 
   if (!_filename)
-    _filename = canonize ("default");  
+    _filename = canonize ("default");
 
   free (_pathname);
   _pathname = 0;
@@ -334,14 +334,6 @@ file_selector::create_window (GtkWindow *window, GtkWidget *parent,
 			    G_CALLBACK (_destroy), GTK1_OBJ (this));
   g_signal_connect_swapped (GTK1_OBJ (_widget), "destroy",
 			    G_CALLBACK (gtk_main_quit), GTK1_OBJ (_widget));
-
-  // We need to interfere with users selecting and editing filenames
-  // to guarantee a correct extension and the appropriate templating
-  // bit when _using_adf.
-  g_signal_connect (GTK1_OBJ (_widget->selection_entry), "delete-text",
-		    G_CALLBACK (_delete_text), this);
-  g_signal_connect (GTK1_OBJ (_widget->selection_entry), "insert-text",
-		    G_CALLBACK (_insert_text), this);
 
   gtk_widget_show (GTK_WIDGET (_widget));
   gtk_grab_add (GTK_WIDGET (_widget));
@@ -672,10 +664,10 @@ void
 file_selector::change_page_mode (bool mode)
 {
   _multi_page_mode = mode;
-  
+
   string name = _filename;
   stringstream ss;
-  
+
   string::size_type dot  = name.rfind (file_opener::ext_sep);
   string::size_type dash = name.find_last_of ("-", dot - 1);
 
@@ -691,7 +683,7 @@ file_selector::change_page_mode (bool mode)
         ss << file_opener::hash_mark;
       ss << name.substr (dot);
     }
-      
+
   set_entry (ss.str ().c_str ());
 }
 
@@ -723,7 +715,7 @@ file_selector::canonize (const char *text) const
       string::size_type dash = name.find_last_of ("-", dot - 1);
       ss << name.substr (0, dash)
          << "-";
-      
+
       for (int i = 0; i < int (_digits->value); ++i)
         ss << file_opener::hash_mark;
     }
@@ -892,7 +884,7 @@ file_selector::add_dialog_extensions (gint index)
   id.index = index;
   _change_format (mi, &id);
   gtk_widget_show (frame);
-  gtk_widget_show (GTK_WIDGET (opts));  
+  gtk_widget_show (GTK_WIDGET (opts));
 
   g_print ("%s: exit\n", __func__);
 }
