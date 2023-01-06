@@ -83,7 +83,8 @@ namespace iscan
 #if HAVE_PNG_H
     set_error_handler (_png, _info);
 
-    if (_header && !_footer && _png->num_rows == _png->flush_rows)
+    lib->write_flush (_png);
+    if (_header && !_footer)
       {
         lib->write_end (_png, _info);
         _footer = true;
@@ -118,7 +119,7 @@ namespace iscan
         // to a "file not found" error when calling dlopen.  We just
         // dlopen the libz library explicitly to work around this.
         basic_imgstream::dlopen ("libz");
-        basic_imgstream::dlopen ("libpng12", validate);
+        basic_imgstream::dlopen ("libpng16", validate);
       }
     catch (std::runtime_error& e)
       {

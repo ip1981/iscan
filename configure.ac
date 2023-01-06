@@ -139,6 +139,7 @@ AC_ARG_ENABLE(gimp,
 
 dnl  checks for libraries
 
+PKG_CHECK_MODULES(LIBPNG, libpng16)
 PKG_CHECK_MODULES(XML, libxml-2.0)
 PKG_CHECK_MODULES(LIBUSB_1_0, libusb-1.0,
     [

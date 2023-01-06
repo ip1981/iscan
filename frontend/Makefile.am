@@ -36,6 +36,7 @@ iscan_LDADD = \
 	-lsane \
 	@LIBLTDL@ \
 	@GTK_LIBS@ \
+	@LIBPNG_LIBS@ \
 	@GDK_IMLIB_LIBS@ \
 	$(top_builddir)/non-free/libesmod.so
 iscan_SOURCES = \
