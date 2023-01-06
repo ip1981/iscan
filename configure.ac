@@ -97,10 +97,6 @@ if test x$CXXTESTGEN != x; then
 fi
 AC_SUBST(CXXTESTGEN_OPTS)
 
-#  Kludge for our binary packaging support
-AC_CHECK_PROGS([DPKG], [dpkg])
-AM_CONDITIONAL([HAVE_DPKG], [test x"$DPKG" != x])
-
 dnl  checks for modules
 
 PKG_CHECK_MODULES(GTK, gtk+-2.0,

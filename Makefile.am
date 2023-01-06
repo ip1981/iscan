@@ -149,6 +149,5 @@ rpm-check-spec: $(srcdir)/$(PACKAGE_TARNAME).spec
 .PHONY: rpm-check-spec
 
 MAINTAINERCLEANFILES =
-MAINTAINERCLEANLOCAL = 
+MAINTAINERCLEANLOCAL =
 
-include scm-build.am
