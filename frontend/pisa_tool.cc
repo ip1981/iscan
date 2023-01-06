@@ -1,4 +1,4 @@
-/* 
+/*
    SANE EPSON backend
    Copyright (C) 2001 SEIKO EPSON CORPORATION
 
@@ -34,21 +34,6 @@
 #include "gettext.h"
 #define  _(msg_id)      gettext (msg_id)
 
-template <>
-double similarity <double> ( const double & A,
-			     const double & a,
-			     const double & b )
-{
-  double B;
-
-  if ( a == 0 )
-    return 0;
-
-  B = ( b * A ) / a;
-
-  return B;
-}
-
 /*--------------------------------------------------------------*/
 GtkWidget * xpm2widget ( GtkWidget * widget, char ** xpm_data )
 {
@@ -63,7 +48,7 @@ GtkWidget * xpm2widget ( GtkWidget * widget, char ** xpm_data )
 					    & mask,
 					    & style->bg [ GTK_STATE_NORMAL ],
 					    xpm_data );
-  
+
   pixmap_widget = ::gtk_pixmap_new ( pixmap, mask );
 
   ::gtk_widget_show ( pixmap_widget );
@@ -82,11 +67,11 @@ GtkWidget * xpmlabelbox ( GtkWidget * parent, char ** xpm_data,
 
   hbox = ::gtk_hbox_new ( FALSE, 0 );
   ::gtk_container_border_width ( GTK_CONTAINER ( hbox ), 3 );
-  
+
   img = ::xpm2widget ( parent, xpm_data );
   ::gtk_box_pack_start ( GTK_BOX ( hbox ), img, FALSE, FALSE, 3 );
   ::gtk_widget_show ( img );
-  
+
   label = ::gtk_label_new ( text );
   ::gtk_box_pack_start ( GTK_BOX ( hbox ), label, FALSE, FALSE, 3 );
   ::gtk_widget_show ( label );
@@ -121,7 +106,7 @@ GtkWidget *  pisa_create_toolbar ( const GtkWidget * parent,
 	}
       else
 	::gtk_toolbar_append_space ( GTK_TOOLBAR ( toolbar ) );
-      
+
       list++;
     }
 
@@ -171,14 +156,14 @@ GtkWidget * pisa_create_scale ( scale_items * list )
 				  list->page,
 				  0 );
   list->adjust = GTK_ADJUSTMENT ( adjust );
-  
+
   ::gtk_signal_connect ( adjust, "value_changed",
 			 GTK_SIGNAL_FUNC ( list->func ),
 			 ( void * ) & list->id );
-  
+
   scale = ::gtk_hscale_new ( GTK_ADJUSTMENT ( adjust ) );
 
   list->widget = scale;
-  
+
   return scale;
 }

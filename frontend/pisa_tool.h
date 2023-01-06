@@ -1,4 +1,4 @@
-/* 
+/*
    SANE EPSON backend
    Copyright (C) 2001 SEIKO EPSON CORPORATION
 
@@ -45,11 +45,7 @@ Type similarity ( const Type & A,
   if ( a == 0 )
     return 0;
 
-  if ( 0 < A )
-    B = ( b * A + a / 2 ) / a;
-  else
-    B = ( b * A - a / 2 ) / a;
-
+  B = ( b * A ) / a;
   return B;
 }
 
